@@ -6,20 +6,22 @@
  *  15.01.2019
  */
 
- #ifndef Tauno_7SEG_H
- #define Tauno_7SEG_H
+#ifndef Tauno_7SEG_h
+#define Tauno_7SEG_h
 
-//#include "Arduino.h"
-#include "Wire.h"
+#include <Arduino.h>
+#include <Wire.h>
 
-class Tauno_7SEG{
+class Tauno_7SEG
+{
   public:
-    Tauno_7SEG(float number, uint8_t addr); //constructor
-    void display();
+    Tauno_7SEG(int addr); //constructor
+    void display(float number);
 
   private:
-    float _number;
-    uint8_t _addr; //i2c address
-}
+    float number;
+    int addr; //i2c address
+    char result[8];
+};
 
 #endif //Tauno_7SEG_H

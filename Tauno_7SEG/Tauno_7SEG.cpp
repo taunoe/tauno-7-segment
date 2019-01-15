@@ -5,19 +5,17 @@
  *  Writen by Tauno Erik
  *  15.01.2019
  */
+#include <Arduino.h>
+#include "Tauno_7SEG.h"
 
-#include Tauno_7SEG.h
-
-Tauno_7SEG::Tauno_7SEG(float number, uint8_t addr){
+Tauno_7SEG::Tauno_7SEG(int addr){
   Wire.begin(); // join i2c bus
-
-  _number = number;
-  _addr = addr;
+  addr = addr;
 }
 
-void Tauno_7SEG::display(float number, uint8_t addr){
-  char result[8]; // Buffer big enough for 7-character float
-  dtostrf(output, 5, 2, result); // Leave room for too large numbers!
+void Tauno_7SEG::display(float number){
+  result[8]; // Buffer big enough for 7-character float
+  dtostrf(number, 5, 2, result); // Leave room for too large numbers!
 
   Wire.beginTransmission(addr); // transmit to i2c device #10 (0xA)
     Wire.write(result[0]);
